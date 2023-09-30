@@ -28,6 +28,12 @@ public class Main {
         int s = 0;
         int l = 0;
         int t = 0;
+        double sPrice = 0;
+        double lPrice = 0;
+        double tPrice = 0;
+        double sWeight = 0;
+        double lWeight = 0;
+        double tWeight = 0;
 
         ArrayList<Device> devices = new ArrayList<Device>();
         for (int i = 0; i<input; i++) {
@@ -42,6 +48,8 @@ public class Main {
                 Smartphone smartphone = new Smartphone("smartphone", randomPrice, randomWeight, randomScreenSize, randomColor, randomMemory);
                 devices.add(smartphone);
                 s++;
+                sPrice += smartphone.getPrice();
+                sWeight += smartphone.getWeight();
             }
             else if (randomType == "laptop"){
                 double randomPrice = laptopPrices[random.nextInt(laptopPrices.length)];
@@ -52,6 +60,8 @@ public class Main {
                 Laptop laptop = new Laptop("laptop", randomPrice, randomWeight, randomScreenSize, randomColor, randomMemory);
                 devices.add(laptop);
                 l++;
+                lPrice += laptop.getPrice();
+                lWeight += laptop.getWeight();
             }
             else {
                 double randomPrice = tabletPrices[random.nextInt(tabletPrices.length)];
@@ -62,15 +72,20 @@ public class Main {
                 Tablet tablet = new Tablet("tablet", randomPrice, randomWeight, randomScreenSize, randomColor, randomMemory);
                 devices.add(tablet);
                 t++;
+                tPrice += tablet.getPrice();
+                tWeight += tablet.getWeight();
             }
         }
 
         for (int i = 0; i < devices.size(); i++){
-            System.out.println(i+1 + ".");
-            System.out.println(devices.get(i).getInfo());
+            System.out.println((i + 1) + "." + devices.get(i).getInfo());
         }
+        System.out.println();
         System.out.println("Number of smartphones: " + s);
         System.out.println("Number of laptops: " + l);
         System.out.println("Number of tablets: " + t);
+        System.out.println();
+        System.out.println("Total price is " + (sPrice + lPrice + tPrice) + "$.");
+        System.out.println("Total weight is " + (sWeight + lWeight + tWeight) + "gr.");
     }
 }
